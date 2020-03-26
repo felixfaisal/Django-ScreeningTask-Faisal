@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Vsplit'
 ]
 
 MIDDLEWARE = [
@@ -75,11 +76,11 @@ WSGI_APPLICATION = 'FOSSEE.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'djangodb',
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': 'djangodb',
 	'USER': 'newuser',
-	'PASSWORD': 'user_password'
-	'HOST': 'localhost'
+	'PASSWORD': 'user_password',
+	'HOST': 'localhost',
 	'PORT': '3306'
     }
 }
