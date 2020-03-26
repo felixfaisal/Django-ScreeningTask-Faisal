@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Faisal</title>
+    </head>
+    <body>
+    <h1>This is the list of chunks</h1>
+        <table>
+            <tr>
+              <th>Chunk</th>
+              <th>Time Start</th>
+              <th>Time end</th>
+              <th>Video Sequence</th>
+              <th>Subtitle</th>
+              <th>Audio</th>
+              <th>Change_Audio</th>
+            </tr>
+           
+        {% for i in all %}
+            
+            <tr>
+                <td>{{i.chunk}}</td>
+                <td>{{i.Time_start}}</td>
+                <td>{{i.Time_end}}</td>
+                <td><a href='/{{i.Video}}'>{{i.Video}}</a></td>
+                <td>{{i.Subtitle}}</td>
+                <td><a href='/{{i.Audio}}'>{{i.Audio}}</a></td>
+                <td><form method="POST" enctype='multipart/form-data'>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" name=Button value={{i.chunk}}>submit</button>
+                </form></td>
+            </tr>
+
+        {% endfor %}
+        </table>
+        <form action="/list" method="GET">
+            <button type="submit" name="Button" value=963>Donwload Tutorial</button>
+        </form>
+    </body>
+</html>

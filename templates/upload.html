@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <title>Faisal</title>
+    </head>
+    <body>
+        <form method="POST" enctype='multipart/form-data'>
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit">submit</button>
+        </form>
+       
+    </body>
+</html>
