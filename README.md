@@ -3,7 +3,7 @@
 
 To install this on your computer follow these steps:
 1. Clone this repository and open it in your terminal 
-2. Type  `pip3 install -r requirements.txt` 
+2. Type  `pip3 install -r requirements.txt` and `pip3 install djangorestframework` 
 3. In FOSSEE/settings.py change the database settings according to your mysql local server
 4. Type `python3 manage.py runserver` to start the web application
 
