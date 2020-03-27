@@ -1,24 +1,26 @@
 <html>
     <head>
         <title>Faisal</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
     <body>
-    <h1>This is the list of chunks</h1>
-        <table>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
             <tr>
-              <th>Chunk</th>
-              <th>Time Start</th>
-              <th>Time end</th>
-              <th>Video Sequence</th>
-              <th>Subtitle</th>
-              <th>Audio</th>
-              <th>Change_Audio</th>
+              <th scope="col">Chunk</th>
+              <th scope="col">Time Start</th>
+              <th scope="col">Time end</th>
+              <th scope="col">Video Sequence</th>
+              <th scope="col">Subtitle</th>
+              <th scope="col">Audio</th>
+              <th scope="col">Change_Audio</th>
             </tr>
+            <thead>
            
         {% for i in all %}
             
             <tr>
-                <td>{{i.chunk}}</td>
+                <th scope="row">{{i.chunk}}</th>
                 <td>{{i.Time_start}}</td>
                 <td>{{i.Time_end}}</td>
                 <td><a href='/{{i.Video}}'>{{i.Video}}</a></td>
@@ -26,15 +28,13 @@
                 <td><a href='/{{i.Audio}}'>{{i.Audio}}</a></td>
                 <td><form method="POST" enctype='multipart/form-data'>
                     {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" name=Button value={{i.chunk}}>submit</button>
+                    {{ form.as_p }} <button type="submit" name=Button value={{i.chunk}} class='btn btn-primary'>Upload</button>
                 </form></td>
             </tr>
 
         {% endfor %}
         </table>
-        <form action="/list" method="GET">
-            <button type="submit" name="Button" value=963>Donwload Tutorial</button>
-        </form>
+        <a href='/media/final_clip.mp4' download="clip.mp4">Download Tutorial</a>
+        
     </body>
 </html>

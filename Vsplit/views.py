@@ -29,10 +29,6 @@ class VideoAPI(generics.GenericAPIView,mixins.ListModelMixin,mixins.CreateModelM
         Video=all.Video
         Sub=all.Sub
         a=video_split(Video,Sub)
-        
-        #video_path='uploaded/'+str(request.data['Video'])
-        #sub_path='uploaded/'+request.data['Sub']
-        #video_split(video_path,sub_path)
         try:
             return self.create(request)
         except Exception:
@@ -60,37 +56,23 @@ class ChunksAPI(generics.GenericAPIView,mixins.ListModelMixin,mixins.CreateModel
             return self.list(request)
 
 
-
-# Create your views here.
-def news(request):
-    return render(request,'news.html')
-
 def list(request):
         all = chunk.objects.all()
         m=request.GET.get('Button',False)
-        if m==str(963):
-            print('Should donwload')
-            a=video_download()
-            print(a)
-        elif request.method=='POST':
+        if request.method=='POST':
             allz = uploaded_audio.objects.all()
             for i in allz:
                 i.delete()
             form=AudioForm(request.POST,request.FILES)
-            #print(request.GET)
-            #print(request.POST)
             print(form)
-            
             chunk_id=request.POST.get('Button',False)
             chunk_id=int(chunk_id)
-            #print(form.is_valid())
             if form.is_valid():
                 form.save()
             allz=uploaded_audio.objects.get()
-            type(allz)
             audio_path = 'media/'+str(allz.Audio)
             setting_audio(chunk_id,audio_path)
-            #print(audio)
+            video_download()
             print('Should upload')
 
         
@@ -99,23 +81,20 @@ def list(request):
     
 def home(request):
     if request.method == 'POST':
-       
         form=VideoForm(request.POST,request.FILES)
-        #print(request.POST)
         if form.is_valid():
             form.save()
         all=videos.objects.get()
         Video=all.Video
         Sub=all.Sub
-        a=video_split(Video,Sub)
-        print(Video)
-        #print(a)
-        
+        video_split(Video,Sub)
         return redirect('list')
     else:
         all = videos.objects.all()
         for i in all:
-            print(i)
+            i.delete()
+        all = chunk.objects.all()
+        for i in all:
             i.delete()
         
         form = VideoForm()
