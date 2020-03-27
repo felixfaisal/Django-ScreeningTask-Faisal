@@ -38,15 +38,27 @@ class VideoAPI(generics.GenericAPIView,mixins.ListModelMixin,mixins.CreateModelM
         except Exception:
             return HttpResponse(200)
 
-class ChunkAPI(generics.GenericAPIView,mixins.ListModelMixin,mixins.CreateModelMixin):
+class ChunkAPI(generics.GenericAPIView,mixins.ListModelMixin,mixins.CreateModelMixin,mixins.RetrieveModelMixin):
     serializer_class=ChunkSerializer
     queryset=chunk.objects.all()
+    lookup_field='chunk'
     
-    def get(self,request):
-        return self.list(request)
+    def get(self,request,chunk=None):
+        if id:
+            return(self.retrieve(request))
+        else:
+            return self.list(request)
 
     def post(self,request):
         return self.create(request)
+
+class ChunksAPI(generics.GenericAPIView,mixins.ListModelMixin,mixins.CreateModelMixin,mixins.RetrieveModelMixin):
+    serializer_class=ChunkSerializer
+    queryset=chunk.objects.all()
+    
+    def get(self,request,chunk=None):
+            return self.list(request)
+
 
 
 # Create your views here.

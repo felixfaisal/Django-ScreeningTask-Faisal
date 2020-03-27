@@ -5,7 +5,8 @@
     <body>
         <form method="POST" enctype='multipart/form-data'>
             {% csrf_token %}
-            {{ form }}
+            <tr><th><label for="id_Video">Video:</label></th><td><input type="file" name="Video" required id="id_Video"></td></tr>
+            <tr><th><label for="id_Sub">Sub:</label></th><td><input type="file" name="Sub" required id="id_Sub"></td></tr>
             <button type="submit">submit</button>
         </form>
        
